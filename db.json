@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Omar",
+      "email": "omar.sayed@blink22.com",
+      "password": "Omar"
+    },
+    {
+      "email": "omar.sayed@gmail.com",
+      "password": "$2a$10$/SFiJL8aokyoPFtDQOr0BeMJPKeTJIUyIVMXj30pMPFIC5WRwFyBW",
+      "name": "omar",
+      "id": 2
+    },
+    {
+      "email": "rowan.ahmed@gmail.com",
+      "password": "$2a$10$Rj0LCmCv4AFbfTJsg34gS.2ihUbvrW9BqLFdzAo08i6lpWnIxWQ/2",
+      "name": "rowan",
+      "id": 3
+    },
+    {
+      "email": "aly.khaled@gmail.com",
+      "password": "$2a$10$kfZJ1.b.TEsOlpqLakB31uzhfiJ34GzqhOqqMw4von5K1Y/PoqjPy",
+      "name": "aly",
+      "id": 4
+    },
+    {
+      "email": "1aly@gmail.com",
+      "password": "$2a$10$m5lHDtsIKu6qvkKnk/GREOiG948vqyt8hWdd3BgpmILhqD1ETdxnu",
+      "name": "aly",
+      "id": 5
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Toast",
+      "userId": 1,
+      "content": "Welcome to Blink22"
+    }
+  ]
+}
