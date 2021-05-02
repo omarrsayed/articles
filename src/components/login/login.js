@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { login } from "../../redux/actions/user-actions";
 import { bindActionCreators } from "redux";
+import * as loginService from "../../services/login-service";
+import AuthContext from "../../context/auth-context";
 
 function Login({ login, history }) {
   const [user, setUser] = useState({});
+  const { setAuthenticated } = useContext(AuthContext);
 
   function onLogin(event) {
+    console.log(user);
     event.preventDefault();
-    login(user);
-    history.push("/home");
+    login(user).then((action) => {
+      loginService.saveToken(action.token.accessToken);
+      setAuthenticated(true);
+      history.push("");
+    });
   }
 
   function onChange(event) {
@@ -35,15 +42,8 @@ function Login({ login, history }) {
 }
 
 Login.propTypes = {
-  user: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
 };
-
-function mapStateToProps(state, ownProps) {
-  return {
-    user: {}
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -51,4 +51,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

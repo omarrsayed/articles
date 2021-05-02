@@ -29,12 +29,54 @@
       "password": "$2a$10$m5lHDtsIKu6qvkKnk/GREOiG948vqyt8hWdd3BgpmILhqD1ETdxnu",
       "name": "aly",
       "id": 5
+    },
+    {
+      "email": "hero@gmail.com",
+      "password": "$2a$10$LdeC34fp1eNBZsM6gAvdked.QkgjExjdANkcAHgeyAXMw4wTA1vd6",
+      "name": "Hero",
+      "id": 6
+    },
+    {
+      "email": "yes@gmail.com",
+      "password": "$2a$10$VDy3rw2Rzp3lO9vE7jemeOidozV/lLo2k3ZE29AIB6MIKmqIvl2/.",
+      "name": "yes",
+      "id": 7
+    },
+    {
+      "email": "no@gmail.com",
+      "password": "$2a$10$UKk84WUqmlkSRFg4GbTYlejXYWuc9pbn4wwSZg.qVqdf25CHu7zLy",
+      "name": "no",
+      "id": 8
+    },
+    {
+      "email": "yay@gmail.com",
+      "password": "$2a$10$.ZGeoh/vNO6QaD2vZ.zxY.TPkJTDtlgzgUwhGueusANWpy2QqAQMa",
+      "name": "yay",
+      "id": 9
+    },
+    {
+      "email": "ho@gmail.com",
+      "password": "$2a$10$iKxVuqr699VjL4zPCMd2NeXCGrDyyPV4TkLrxI8mFRN.TPGLarp4W",
+      "name": "ho",
+      "id": 10
+    },
+    {
+      "email": "blue@gmail.com",
+      "password": "$2a$10$7xc9rDquGPOFn83pRE10KekueggUKYypwMblVTS4wLiAKlfehfaRS",
+      "name": "blue",
+      "id": 11
     }
   ],
   "articles": [
     {
       "id": 1,
-      "title": "Toast",
+      "title": "TEST_X1",
+      "userId": 1,
+      "content": "Welcome to Blink22"
+    },
+    {
+      "id": 3,
+      "title": "TEST_X3",
       "userId": 1,
       "content": "Welcome to Blink22"
     }

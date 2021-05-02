@@ -10,7 +10,7 @@ function Register({ register, history }) {
   function onRegister(event) {
     event.preventDefault();
     register(user);
-    history.push("/home");
+    history.push("/login");
   }
 
   function onChange(event) {

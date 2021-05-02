@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadArticles } from "../../redux/actions/article-actions";
-import { loadUsers } from "../../redux/actions/user-actions";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
+import { loadArticles } from "../../redux/actions/article-actions";
+import { loadUsers } from "../../redux/actions/user-actions";
 
-function ArticlesList({ loadArticles, loadUsers, articles, users }) {
+function ArticlesList({ loadArticles, loadUsers, articles }) {
   useEffect(() => {
-    loadUsers().catch(error => alert(error));
-    loadArticles().catch(error => alert(error));
+    loadUsers().catch((error) => alert(error));
+    loadArticles().catch((error) => alert(error));
   }, []);
 
   return (
@@ -25,9 +25,9 @@ function ArticlesList({ loadArticles, loadUsers, articles, users }) {
           return (
             <tr key={article.id}>
               <td>
-                <Link to={"/articles/"}>{article.title}</Link>
+                <Link to={"/articles/" + article.id}>{article.title}</Link>
               </td>
-              <td>{article.userId}</td>
+              <td>{article.userName}</td>
             </tr>
           );
         })}
@@ -43,9 +43,17 @@ ArticlesList.propTypes = {
   loadUsers: PropTypes.func.isRequired,
 };
 
+function mapArticles(state) {
+  if (state.users.length === 0) return [];
+  return state.articles.map((article) => {
+    article.userName = state.users.find((user) => user.id == article.userId).name;
+    return article;
+  });
+}
+
 function mapStateToProps(state, ownProps) {
   return {
-    articles: state.articles,
+    articles: mapArticles(state),
     users: state.users,
   };
 }

@@ -9,8 +9,8 @@ export function loginFailed(error) {
   throw error;
 }
 
-export function registerSuccess(token) {
-  return { type: actionTypes.LOGIN_SUCCESS, token };
+export function registerSuccess(user) {
+  return { type: actionTypes.REGISTER_SUCCESS, user };
 }
 
 export function registerFailed(error) {
@@ -25,7 +25,6 @@ export function loadUsersFailed(error) {
   throw error;
 }
 
-
 export function loadUsers() {
   return function (dispatch) {
     return usersAPI
@@ -39,7 +38,10 @@ export function register(user) {
   return function (dispatch) {
     return usersAPI
       .register(user)
-      .then((token) => dispatch(registerSuccess(token)))
+      .then(() => {
+        return usersAPI.getByEmail(user.email)
+      })
+      .then((user) => dispatch(registerSuccess(user))) 
       .catch((error) => registerFailed(error));
   };
 }

@@ -1,20 +1,32 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import AuthContext from "../../context/auth-context";
+import * as loginService from "../../services/login-service";
 
 function Header() {
-    
-  const active = { color: "#F15B2A" };
+  const history = useHistory();
+  const { authenticated, setAuthenticated } = useContext(AuthContext);
+
+  function onLogin() {
+    history.push("/login");
+  }
+
+  function onLogout() {
+    setAuthenticated(false);
+    loginService.logout();
+  }
 
   return (
-    <nav>
-      <NavLink to="/" exact>
-        Home
-      </NavLink>
-      {" | "}
-      <NavLink to="/register">Register</NavLink>
-      {" | "}
-      <NavLink to="/login">Login</NavLink>
-    </nav>
+    <div>
+      <nav>
+        <NavLink to="/" exact>
+          Home
+        </NavLink>
+        {" | "}
+        <NavLink to={authenticated ? "/" : "/register"}>{authenticated ? "User Settings" : "Register"}</NavLink>
+      </nav>
+      <button onClick={authenticated ? onLogout : onLogin}>{authenticated ? "logout" : "login"}</button>
+    </div>
   );
 }
 

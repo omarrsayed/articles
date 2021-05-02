@@ -5,15 +5,23 @@ export function loadArticlesSuccess(articles) {
   return { type: actionTypes.LOAD_ARTICLES_SUCCESS, articles };
 }
 
-export function updateArticleSuccess(article) {
-  return { type: actionTypes.UPDATE_ARTICLE_SUCCESS, article };
+export function saveArticleSuccess(article) {
+  return { type: actionTypes.SAVE_ARTICLE_SUCCESS, article };
 }
 
-export function createArticleSuccess(article) {
-  return { type: actionTypes.CREATE_ARTICLE_SUCCESS, article };
+export function deleteArticleSuccess(articleId) {
+  return { type: actionTypes.DELETE_ARTICLE_SUCCESS, articleId };
 }
 
 export function loadArticlesFailed(error) {
+  throw error;
+}
+
+export function saveArticleFailed(error) {
+  throw error;
+}
+
+export function deleteArticleFailed(error) {
   throw error;
 }
 
@@ -26,12 +34,20 @@ export function loadArticles() {
   };
 }
 
-// export function saveCourse(course) {
-//     return function(dispatch) { // dispatch can provide an argument "getState which provides store data"
-//         return courseApi.saveCourse(course)
-//             .then(savedCourse => {
-//                 course.id? dispatch(updateCourseSuccess(savedCourse)) : dispatch(createCourseSuccess(savedCourse));
-//             })
-//             .catch(error => saveCourseFailure(error));
-//     }
-// }
+export function saveArticle(article) {
+  return function (dispatch) {
+    return articlesAPI
+      .save(article)
+      .then((article) => dispatch(saveArticleSuccess(article)))
+      .catch((error) => saveArticleFailed(article));
+  };
+}
+
+export function deleteArticle(articleId) {
+  return function (dispatch) {
+    return articlesAPI
+      .remove(articleId)
+      .then(() => dispatch(deleteArticleSuccess(articleId)))
+      .catch((error) => deleteArticleFailed());
+  };
+}
