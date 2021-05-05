@@ -11,7 +11,6 @@ function Login({ login, history }) {
   const { setAuthenticated } = useContext(AuthContext);
 
   function onLogin(event) {
-    console.log(user);
     event.preventDefault();
     login(user).then((action) => {
       loginService.saveToken(action.token.accessToken);

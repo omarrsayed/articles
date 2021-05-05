@@ -1,28 +1,17 @@
 import * as actionTypes from "./action-types";
 import * as usersAPI from "../../api/users";
+import actionError from "./error-actions";
 
 export function loginSuccess(token) {
   return { type: actionTypes.LOGIN_SUCCESS, token };
-}
-
-export function loginFailed(error) {
-  throw error;
 }
 
 export function registerSuccess(user) {
   return { type: actionTypes.REGISTER_SUCCESS, user };
 }
 
-export function registerFailed(error) {
-  throw error;
-}
-
 export function loadUsersSuccess(users) {
   return { type: actionTypes.LOAD_USERS_SUCCESS, users };
-}
-
-export function loadUsersFailed(error) {
-  throw error;
 }
 
 export function loadUsers() {
@@ -30,7 +19,7 @@ export function loadUsers() {
     return usersAPI
       .getAll()
       .then((users) => dispatch(loadUsersSuccess(users)))
-      .catch((error) => loadUsersFailed(error));
+      .catch((error) => dispatch(actionError(actionTypes.LOAD_USERS_ERROR, error)));
   };
 }
 
@@ -39,10 +28,10 @@ export function register(user) {
     return usersAPI
       .register(user)
       .then(() => {
-        return usersAPI.getByEmail(user.email)
+        return usersAPI.getByEmail(user.email);
       })
-      .then((user) => dispatch(registerSuccess(user))) 
-      .catch((error) => registerFailed(error));
+      .then((user) => dispatch(registerSuccess(user)))
+      .catch((error) => dispatch(actionError(actionTypes.REGISTER_ERROR, error)));
   };
 }
 
@@ -51,6 +40,6 @@ export function login(user) {
     return usersAPI
       .login(user)
       .then((token) => dispatch(loginSuccess(token)))
-      .catch((error) => loginFailed(error));
+      .catch((error) => dispatch(actionError(actionTypes.LOGIN_ERROR, error)));
   };
 }

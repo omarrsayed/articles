@@ -32,7 +32,7 @@ function ArticleEdit({ history, saveArticle, loadArticles, articles, ...props })
 
   return (
     <div>
-      {!authenticated && <Redirect to="/" />}
+      {/* {!authenticated && <Redirect to="/" />} */}
       <h1>ARTICLE_EDIT</h1>
       <h2>{article.title}</h2>
       <form onSubmit={onEdit}>

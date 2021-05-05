@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useContext, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import AuthContext from "../../context/auth-context";
 import { deleteArticle, loadArticles } from "../../redux/actions/article-actions";
@@ -16,8 +15,9 @@ function ArticleDetail({ loadUsers, loadArticles, deleteArticle, users, articles
   }, []);
 
   function onDelete() {
-    history.push("");
-    deleteArticle(article.id).catch((error) => alert(error));
+    deleteArticle(article.id)
+      .then(() => history.push(""))
+      .catch((error) => alert(error));
   }
 
   function onEdit() {
